@@ -17,6 +17,7 @@ int	main(void)
 		return (0);
 	if (!map->window_ptr)
 		return (0);
+	ft_populate_map(map);
 	mlx_loop(map->mlx_ptr);
 	return (0);
 }
@@ -24,8 +25,12 @@ int	main(void)
 void	ft_setup_struct(t_map *map)
 {
 	map->mlx_ptr = mlx_init();
-	map->map_fd = open("map.ber", O_RDONLY);
-	map->bg_img_path = "bg.xpm";
-	map->bg_img = mlx_xpm_file_to_image(map->mlx_ptr, map->bg_img_path,
+	if (!map->mlx_ptr)
+		return ;
+	map->bg_img = mlx_xpm_file_to_image(map->mlx_ptr, "bg.xpm",
 			&map->bg_img_width, &map->bg_img_height);
+	map->char_img= mlx_xpm_file_to_image(map->mlx_ptr, "static_char.xpm",
+			&map->bg_img_width, &map->bg_img_height);
+	if (!map->bg_img)
+		return ;
 }

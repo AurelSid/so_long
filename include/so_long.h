@@ -13,7 +13,7 @@ typedef struct Node
 	int		map_fd;
 	void	*mlx_ptr;
 	void	*bg_img;
-	char	*bg_img_path;
+	void	*char_img;
 	int		bg_img_width;
 	int		bg_img_height;
 	void	*window_ptr;
@@ -26,4 +26,5 @@ void		ft_read_map(t_map *map);
 void		ft_setup_struct(t_map *map);
 
 void		ft_populate_map(t_map *map);
+void		ft_format(t_map *map);
 #endif

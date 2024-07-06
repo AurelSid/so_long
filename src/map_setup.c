@@ -6,7 +6,7 @@
 /*   By: asideris <asideris@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/30 18:03:42 by asideris          #+#    #+#             */
-/*   Updated: 2024/07/06 14:03:54 by asideris         ###   ########.fr       */
+/*   Updated: 2024/07/06 17:26:37 by asideris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	ft_get_measures(t_map *map)
 		map->collumns = ft_strlen(str);
 		map->rows++;
 	}
+	close(fd);
 }
 void	ft_allocate_map(t_map *map)
 {
@@ -72,32 +73,22 @@ void	ft_read_map(t_map *map)
 		{
 			break ;
 		}
-		ft_strlcpy(map->map[i], line, map->collumns);
+		ft_strlcpy(map->map[i], line, map->collumns+1);
 		free(line);
 		i++;
 	}
-	ft_populate_map(map);
 	close(fd);
 }
 
-void ft_populate_map(t_map *map)
+void	ft_populate_map(t_map *map)
 {
 	int win_x;
 	int win_y;
-	int i;
 	
-	i = 0;
 	win_x = 0;
 	win_y = 0;
-	map->bg_img_path = "bg.xpm";
-	while (win_x < map->collumns)
-	{
-		win_y = 0;
-		while (win_y < map->rows)
-		{
-			mlx_put_image_to_window(map->mlx_ptr, map->window_ptr, map->bg_img, win_x, win_y);
-			win_y += map->bg_img_height;
-		}
-		win_x += map->bg_img_width;
-	}
+	
+	ft_format(map);
+	mlx_put_image_to_window(map->mlx_ptr, map->window_ptr, map->char_img, 100,
+		100);
 }
