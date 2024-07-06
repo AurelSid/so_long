@@ -11,7 +11,7 @@ GNL_DIR             = get_next_line/
 
 # Compiler and CFlags
 CC                  = gcc
-CFLAGS              = -Wall -Werror -Wextra 
+CFLAGS              = -Wall -Werror -Wextra  -g
 RM                  = rm -f
 
 # Additional flags
@@ -19,7 +19,7 @@ INCLUDES            = -I /usr/local/include
 LIBRARIES           = -L /usr/local/lib/ -lmlx -framework OpenGL -framework AppKit 
 
 # Source files
-SRCS                = main.c 
+SRCS                = main.c  map_setup.c
 GNL_SRCS            = get_next_line.c get_next_line_utils.c
 
 # File paths
