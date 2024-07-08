@@ -6,7 +6,7 @@
 /*   By: asideris <asideris@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/30 18:03:42 by asideris          #+#    #+#             */
-/*   Updated: 2024/07/06 17:26:37 by asideris         ###   ########.fr       */
+/*   Updated: 2024/07/08 15:50:53 by asideris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ void	ft_read_map(t_map *map)
 	int		i;
 	char	*line;
 
+	ft_get_measures(map);
 	ft_allocate_map(map);
 	fd = open("map.ber", O_RDONLY);
 	i = 0;
@@ -73,22 +74,9 @@ void	ft_read_map(t_map *map)
 		{
 			break ;
 		}
-		ft_strlcpy(map->map[i], line, map->collumns+1);
+		ft_strlcpy(map->map[i], line, map->collumns + 1);
 		free(line);
 		i++;
 	}
 	close(fd);
-}
-
-void	ft_populate_map(t_map *map)
-{
-	int win_x;
-	int win_y;
-	
-	win_x = 0;
-	win_y = 0;
-	
-	ft_format(map);
-	mlx_put_image_to_window(map->mlx_ptr, map->window_ptr, map->char_img, 100,
-		100);
 }

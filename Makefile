@@ -3,7 +3,6 @@ NAME                = so_long
 
 # Directories
 LIBFT               = ./libft/libft.a
-PRINTF              = ./ft_printf/libftprintf.a
 INC                 = include/
 SRC_DIR             = src/
 OBJ_DIR             = obj/
@@ -19,7 +18,7 @@ INCLUDES            = -I /usr/local/include
 LIBRARIES           = -L /usr/local/lib/ -lmlx -framework OpenGL -framework AppKit 
 
 # Source files
-SRCS                = main.c  map_setup.c map_format.c
+SRCS                = main.c  map_setup.c populate_map.c  move.c check_map.c
 GNL_SRCS            = get_next_line.c get_next_line_utils.c
 
 # File paths
@@ -34,11 +33,6 @@ $(LIBFT):
 	@make -C ./libft > /dev/null
 	@echo "\033[1;32mLibft.a has been created.\033[0m"
 
-$(PRINTF):
-	@echo "Compiling printf..."
-	@make -C ./ft_printf > /dev/null
-	@echo "\033[1;32mPrintf.a has been created.\033[0m"
-
 obj:
 	@if [ -d $(OBJ_DIR) ]; then \
 		echo "\033[1;31mDirectory already created.\033[0m"; \
@@ -47,12 +41,12 @@ obj:
 		echo "Directory obj/ with files .o is being created..."; \
 	fi
 
-$(NAME):       $(LIBFT) $(PRINTF) obj $(OBJ)
+$(NAME):       $(LIBFT) obj $(OBJ)
 	@if [ -f $(NAME) ]; then \
 		echo "\033[1;31mso_long still exists.\033[0m"; \
 	else \
 		echo "Compiling so_long..."; \
-		$(CC) $(CFLAGS) $(INCLUDES) $(OBJ) $(LIBFT) $(PRINTF) -o $(NAME) $(LIBRARIES); \
+		$(CC) $(CFLAGS) $(INCLUDES) $(OBJ) $(LIBFT)  -o $(NAME) $(LIBRARIES); \
 		echo "\033[1;32mDone.\033[0m"; \
 	fi
 
@@ -72,7 +66,7 @@ clean:
 	@$(RM) -r $(OBJ_DIR)
 	@echo "Removing so_long/obj..."
 	@make clean -C ./libft > /dev/null
-	@make clean -C ./ft_printf > /dev/null
+
 	@echo "\033[1;32mAll Done for clean.\033[0m"
 
 fclean: clean
@@ -80,8 +74,7 @@ fclean: clean
 	@$(RM) $(NAME)
 	@echo "Removing libft.a..."
 	@$(RM) $(LIBFT)
-	@echo "Removing printf.a..."
-	@$(RM) $(PRINTF)
+
 	@echo "\033[1;32mDone.\033[0m"
 
 re: fclean all
