@@ -6,7 +6,7 @@
 /*   By: asideris <asideris@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/30 18:03:42 by asideris          #+#    #+#             */
-/*   Updated: 2024/07/08 15:50:53 by asideris         ###   ########.fr       */
+/*   Updated: 2024/07/09 15:51:28 by asideris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	ft_allocate_map(t_map *map)
 	}
 }
 
-void	ft_read_map(t_map *map)
+void	ft_read_map(t_map *map, char *file_name)
 {
 	int		fd;
 	int		i;
@@ -65,7 +65,7 @@ void	ft_read_map(t_map *map)
 
 	ft_get_measures(map);
 	ft_allocate_map(map);
-	fd = open("map.ber", O_RDONLY);
+	fd = open(file_name, O_RDONLY);
 	i = 0;
 	while (i < map->rows)
 	{
@@ -79,4 +79,17 @@ void	ft_read_map(t_map *map)
 		i++;
 	}
 	close(fd);
+}
+
+void	ft_free_map(t_map *map)
+{
+	int	j;
+
+	j = 0;
+	while (j < map->rows)
+	{
+		free(map->map[j]);
+		j++;
+	}
+	free(map->map);
 }
