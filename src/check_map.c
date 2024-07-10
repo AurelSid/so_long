@@ -6,7 +6,7 @@
 /*   By: asideris <asideris@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 13:10:02 by asideris          #+#    #+#             */
-/*   Updated: 2024/07/10 16:40:37 by asideris         ###   ########.fr       */
+/*   Updated: 2024/07/10 18:55:30 by asideris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int	ft_check_walls(t_map *map)
 	int	j;
 
 	i = 0;
-	j = 0;
 	while (i < map->rows)
 	{
 		j = 0;
@@ -28,13 +27,33 @@ int	ft_check_walls(t_map *map)
 				- 1)
 			{
 				if (map->map[i][j] != '1')
-					ft_exit_free(map, "Unvalid walls setup");
+					ft_exit_free(map, "Invalid walls setup");
 			}
 			j++;
 		}
 		i++;
 	}
 	return (1);
+}
+
+void	ft_printf_map(t_map *map)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (map->map[i])
+	{
+		j = 0;
+		while (map->map[i][j])
+		{
+			write(1, &map->map[i][j], 1);
+			j++;
+		}
+		write(1, "\n", 1);
+		i++;
+	}
 }
 int	ft_check_rows(t_map *map)
 {
@@ -46,7 +65,9 @@ int	ft_check_rows(t_map *map)
 	while (i < map->rows)
 	{
 		if (ft_strlen(map->map[i]) != len)
+		{
 			ft_exit_free(map, "Uneven map");
+		}
 		i++;
 	}
 	return (1);
@@ -54,8 +75,8 @@ int	ft_check_rows(t_map *map)
 
 int	ft_check_valid_tile(t_map *map)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	j = 0;
@@ -68,7 +89,6 @@ int	ft_check_valid_tile(t_map *map)
 				&& map->map[i][j] != 'C' && map->map[i][j] != 'P'
 				&& map->map[i][j] != 'E')
 				ft_exit_free(map, "Unvalid tile in map");
-
 			j++;
 		}
 		i++;

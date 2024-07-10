@@ -6,7 +6,7 @@
 /*   By: asideris <asideris@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 17:19:37 by asideris          #+#    #+#             */
-/*   Updated: 2024/07/10 16:37:03 by asideris         ###   ########.fr       */
+/*   Updated: 2024/07/10 18:58:35 by asideris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int	ft_check_err(t_map *map)
 	if (!ft_check_valid_tile(map))
 		return (0);
 	if (!ft_backtrack(map, map->player_pos_y, map->player_pos_x))
-		return (0);
+		ft_exit_free(map,"Unsolvable map");
 	return (1);
 }
 int	main(int argc, char **argv)
@@ -104,8 +104,7 @@ int	main(int argc, char **argv)
 	mlx_key_hook(map->window_ptr, ft_move, map);
 	mlx_string_put(map->mlx_ptr, map->window_ptr, 20, 0, 0xFFFFFF,
 		ft_itoa(map->score));
-	mlx_string_put(map->mlx_ptr, map->window_ptr, 60 + 20, 0, 0xFFFFFF,
-		"0");
+	mlx_string_put(map->mlx_ptr, map->window_ptr, 60 + 20, 0, 0xFFFFFF, "0");
 	mlx_loop(map->mlx_ptr);
 	return (0);
 }

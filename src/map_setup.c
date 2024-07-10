@@ -6,7 +6,7 @@
 /*   By: asideris <asideris@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/30 18:03:42 by asideris          #+#    #+#             */
-/*   Updated: 2024/07/10 16:42:48 by asideris         ###   ########.fr       */
+/*   Updated: 2024/07/10 18:48:29 by asideris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,16 @@ void	ft_get_measures(t_map *map)
 {
 	int		fd;
 	char	*str;
+	int		len;
 
+	len = 0;
 	map->collumns = 0;
-	map->rows = 0;
+	map->rows = 1;
 	fd = open("map.ber", O_RDONLY);
+	str = get_next_line(fd);
+	if (!str)
+		free(str);
+	len = ft_strlen(str) - 1;
 	while (1)
 	{
 		str = get_next_line(fd);
@@ -28,9 +34,11 @@ void	ft_get_measures(t_map *map)
 			free(str);
 			break ;
 		}
-		map->collumns = ft_strlen(str);
+		map->collumns = ft_strlen(str) - 1;
 		map->rows++;
 	}
+	printf("collumns : %d\n", map->collumns);
+	printf("rows : %d\n", map->rows);
 	close(fd);
 }
 void	ft_allocate_map(t_map *map)
@@ -62,19 +70,24 @@ void	ft_read_map(t_map *map, char *file_name)
 	int		fd;
 	int		i;
 	char	*line;
+	int		j;
 
 	ft_get_measures(map);
 	ft_allocate_map(map);
 	fd = open(file_name, O_RDONLY);
+	j = 0;
 	i = 0;
 	while (i < map->rows)
 	{
+		j = 0;
 		line = get_next_line(fd);
-		if (line == NULL)
+		while (line[j] != '\n' && line[j] != '\0')
 		{
-			break ;
+			map->map[i][j] = line[j];
+			j++;
 		}
-		ft_strlcpy(map->map[i], line, ft_strlen(line) + 1);
+		map->map[i][j] = '\0';
+		printf("%s", line);
 		free(line);
 		i++;
 	}

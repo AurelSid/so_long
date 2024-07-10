@@ -48,5 +48,6 @@ int			ft_check_valid_tile(t_map *map);
 int			ft_backtrack(t_map *map, int x, int y);
 int			ft_token_count(t_map *map);
 void		ft_exit_free(t_map *map, char *error);
+void		ft_printf_map(t_map *map);
 
 #endif
