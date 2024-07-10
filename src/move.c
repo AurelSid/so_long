@@ -6,7 +6,7 @@
 /*   By: asideris <asideris@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/07 15:55:24 by asideris          #+#    #+#             */
-/*   Updated: 2024/07/09 18:09:10 by asideris         ###   ########.fr       */
+/*   Updated: 2024/07/10 16:30:13 by asideris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,10 @@ int	ft_move(int keycode, void *param)
 	else if (keycode == 53)
 		exit(0);
 	if (map->map[map->player_pos_y][map->player_pos_x] == 'C')
+	{
 		map->tokens--;
+		map->map[map->player_pos_y][map->player_pos_x] = '0';
+	}
 	if (map->map[map->player_pos_y][map->player_pos_x] == 'E')
 	{
 		if (map->tokens == 0)

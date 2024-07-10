@@ -6,7 +6,7 @@
 /*   By: asideris <asideris@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 17:19:37 by asideris          #+#    #+#             */
-/*   Updated: 2024/07/09 17:28:07 by asideris         ###   ########.fr       */
+/*   Updated: 2024/07/10 16:37:03 by asideris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,11 +93,7 @@ int	main(int argc, char **argv)
 	ft_setup_struct(map);
 	ft_read_map(map, argv[1]);
 	ft_set_player_pos(map);
-	if (ft_check_err(map) == 0)
-	{
-		ft_free_map(map);
-		return (0);
-	}
+	ft_check_err(map);
 	ft_setup_struct(map);
 	ft_read_map(map, argv[1]);
 	map->window_ptr = mlx_new_window(map->mlx_ptr, (map->collumns

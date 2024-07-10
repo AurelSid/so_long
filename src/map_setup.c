@@ -6,7 +6,7 @@
 /*   By: asideris <asideris@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/30 18:03:42 by asideris          #+#    #+#             */
-/*   Updated: 2024/07/09 17:27:40 by asideris         ###   ########.fr       */
+/*   Updated: 2024/07/10 16:42:48 by asideris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	ft_read_map(t_map *map, char *file_name)
 		{
 			break ;
 		}
-		ft_strlcpy(map->map[i], line, map->collumns + 1);
+		ft_strlcpy(map->map[i], line, ft_strlen(line) + 1);
 		free(line);
 		i++;
 	}

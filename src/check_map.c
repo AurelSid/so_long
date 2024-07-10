@@ -6,7 +6,7 @@
 /*   By: asideris <asideris@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 13:10:02 by asideris          #+#    #+#             */
-/*   Updated: 2024/07/09 17:27:40 by asideris         ###   ########.fr       */
+/*   Updated: 2024/07/10 16:40:37 by asideris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,7 @@ int	ft_check_walls(t_map *map)
 				- 1)
 			{
 				if (map->map[i][j] != '1')
-				{
-					printf("err : wrong wall setup");
-					return (0);
-				}
+					ft_exit_free(map, "Unvalid walls setup");
 			}
 			j++;
 		}
@@ -44,15 +41,12 @@ int	ft_check_rows(t_map *map)
 	int	i;
 	int	len;
 
-	i = 1;
+	i = 0;
 	len = ft_strlen(map->map[0]);
 	while (i < map->rows)
 	{
 		if (ft_strlen(map->map[i]) != len)
-		{
-			return (0);
-			printf("Wrong map row allignments");
-		}
+			ft_exit_free(map, "Uneven map");
 		i++;
 	}
 	return (1);
@@ -73,14 +67,11 @@ int	ft_check_valid_tile(t_map *map)
 			if (map->map[i][j] != '1' && map->map[i][j] != '0'
 				&& map->map[i][j] != 'C' && map->map[i][j] != 'P'
 				&& map->map[i][j] != 'E')
-			{
-				printf("err : theres a bad tile in the map!");
-				return (0);
-			}
+				ft_exit_free(map, "Unvalid tile in map");
 
 			j++;
 		}
 		i++;
 	}
-	return(1);
+	return (1);
 }
