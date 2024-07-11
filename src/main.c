@@ -6,7 +6,7 @@
 /*   By: asideris <asideris@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 17:19:37 by asideris          #+#    #+#             */
-/*   Updated: 2024/07/10 18:58:35 by asideris         ###   ########.fr       */
+/*   Updated: 2024/07/11 16:02:11 by asideris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ void	ft_setup_struct(t_map *map)
 		return ;
 	map->bg_img = mlx_xpm_file_to_image(map->mlx_ptr, "bg.xpm", &map->tile_w,
 			&map->tile_h);
-	map->obstacle_1 = mlx_xpm_file_to_image(map->mlx_ptr, "obstacle_1.xpm",
-			&map->tile_w, &map->tile_h);
 	map->char_img = mlx_xpm_file_to_image(map->mlx_ptr, "static_char.xpm",
 			&map->tile_w, &map->tile_h);
 	map->wall = mlx_xpm_file_to_image(map->mlx_ptr, "wall.xpm", &map->tile_w,
@@ -104,7 +102,6 @@ int	main(int argc, char **argv)
 	mlx_key_hook(map->window_ptr, ft_move, map);
 	mlx_string_put(map->mlx_ptr, map->window_ptr, 20, 0, 0xFFFFFF,
 		ft_itoa(map->score));
-	mlx_string_put(map->mlx_ptr, map->window_ptr, 60 + 20, 0, 0xFFFFFF, "0");
 	mlx_loop(map->mlx_ptr);
 	return (0);
 }
