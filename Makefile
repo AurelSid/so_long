@@ -18,7 +18,7 @@ INCLUDES            = -I /usr/local/include
 LIBRARIES           = -L /usr/local/lib/ -lmlx -framework OpenGL -framework AppKit 
 
 # Source files
-SRCS                = main.c  map_setup.c populate_map.c  move.c check_map.c backtracking.c events.c error.c
+SRCS                = main.c  map_setup.c populate_map.c  move.c check_map.c backtracking.c error.c
 GNL_SRCS            = get_next_line.c get_next_line_utils.c
 
 # File paths

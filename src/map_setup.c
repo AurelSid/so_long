@@ -6,7 +6,7 @@
 /*   By: asideris <asideris@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/30 18:03:42 by asideris          #+#    #+#             */
-/*   Updated: 2024/07/10 18:48:29 by asideris         ###   ########.fr       */
+/*   Updated: 2024/07/11 16:15:15 by asideris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,9 @@ void	ft_get_measures(t_map *map)
 		map->collumns = ft_strlen(str) - 1;
 		map->rows++;
 	}
-	printf("collumns : %d\n", map->collumns);
-	printf("rows : %d\n", map->rows);
 	close(fd);
 }
+
 void	ft_allocate_map(t_map *map)
 {
 	int	i;

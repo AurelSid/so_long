@@ -6,7 +6,7 @@
 /*   By: asideris <asideris@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 16:31:05 by asideris          #+#    #+#             */
-/*   Updated: 2024/07/11 16:01:05 by asideris         ###   ########.fr       */
+/*   Updated: 2024/07/11 16:13:33 by asideris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 void	ft_exit_free(t_map *map, char *error)
 {
-	int j = 0;
+	int	j;
 
+	j = 0;
 	while (j < map->rows)
 	{
 		free(map->map[j]);
@@ -26,7 +27,6 @@ void	ft_exit_free(t_map *map, char *error)
 	mlx_destroy_image(map->mlx_ptr, map->exit_img);
 	mlx_destroy_image(map->mlx_ptr, map->flowers);
 	mlx_destroy_image(map->mlx_ptr, map->window_ptr);
-
 	if (error)
 	{
 		fprintf(stderr, "Error: %s\n", error);

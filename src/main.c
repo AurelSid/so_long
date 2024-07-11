@@ -6,7 +6,7 @@
 /*   By: asideris <asideris@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 17:19:37 by asideris          #+#    #+#             */
-/*   Updated: 2024/07/11 16:02:11 by asideris         ###   ########.fr       */
+/*   Updated: 2024/07/11 16:14:18 by asideris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void	ft_set_player_pos(t_map *map)
 	if (map->player_pos_y == 0)
 		printf("No player_found");
 }
+
 void	ft_map(t_map *map)
 {
 	int	i;
@@ -65,6 +66,7 @@ void	ft_map(t_map *map)
 	printf("%c", map->map[i][17]);
 	j++;
 }
+
 int	ft_check_err(t_map *map)
 {
 	if (!ft_token_count(map))
@@ -78,9 +80,10 @@ int	ft_check_err(t_map *map)
 	if (!ft_check_valid_tile(map))
 		return (0);
 	if (!ft_backtrack(map, map->player_pos_y, map->player_pos_x))
-		ft_exit_free(map,"Unsolvable map");
+		ft_exit_free(map, "Unsolvable map");
 	return (1);
 }
+
 int	main(int argc, char **argv)
 {
 	t_map	*map;
@@ -100,8 +103,6 @@ int	main(int argc, char **argv)
 		return (0);
 	ft_populate_map(map);
 	mlx_key_hook(map->window_ptr, ft_move, map);
-	mlx_string_put(map->mlx_ptr, map->window_ptr, 20, 0, 0xFFFFFF,
-		ft_itoa(map->score));
 	mlx_loop(map->mlx_ptr);
 	return (0);
 }

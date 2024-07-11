@@ -6,7 +6,7 @@
 /*   By: asideris <asideris@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 13:10:02 by asideris          #+#    #+#             */
-/*   Updated: 2024/07/10 18:55:30 by asideris         ###   ########.fr       */
+/*   Updated: 2024/07/11 16:13:10 by asideris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void	ft_printf_map(t_map *map)
 		i++;
 	}
 }
+
 int	ft_check_rows(t_map *map)
 {
 	int	i;

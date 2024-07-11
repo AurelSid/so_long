@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   so_long.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: asideris <asideris@student.s19.be>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/11 16:14:47 by asideris          #+#    #+#             */
+/*   Updated: 2024/07/11 16:15:03 by asideris         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
@@ -5,6 +17,7 @@
 # include <fcntl.h>
 # include <mlx.h>
 # include <stdio.h>
+
 typedef struct Node
 {
 	void	*bg_img;
