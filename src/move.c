@@ -6,7 +6,7 @@
 /*   By: asideris <asideris@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/07 15:55:24 by asideris          #+#    #+#             */
-/*   Updated: 2024/07/16 14:38:42 by asideris         ###   ########.fr       */
+/*   Updated: 2024/07/16 14:53:32 by asideris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void	ft_move_up(t_map *map)
 {
-	char *moves;
+	char	*moves;
+
 	if (map->map[map->player_pos_y - 1][map->player_pos_x] != '1')
 	{
 		if (map->map[map->player_pos_y][map->player_pos_x] == 'E')
@@ -30,14 +31,15 @@ void	ft_move_up(t_map *map)
 			map->player_pos_x * map->tile_w, map->player_pos_y * map->tile_h);
 		map->moves++;
 		moves = ft_itoa(map->moves);
-		write(1,moves,ft_strlen(moves));
+		write(1, moves, ft_strlen(moves));
 		write(1, "\n", 1);
 	}
 }
 
 void	ft_move_down(t_map *map)
 {
-	char *moves;
+	char	*moves;
+
 	if (map->map[map->player_pos_y + 1][map->player_pos_x] != '1')
 	{
 		if (map->map[map->player_pos_y][map->player_pos_x] == 'E')
@@ -53,14 +55,15 @@ void	ft_move_down(t_map *map)
 			map->player_pos_x * map->tile_w, map->player_pos_y * map->tile_h);
 		map->moves++;
 		moves = ft_itoa(map->moves);
-		write(1,moves,ft_strlen(moves));
+		write(1, moves, ft_strlen(moves));
 		write(1, "\n", 1);
 	}
 }
 
 void	ft_move_left(t_map *map)
 {
-	char *moves;
+	char	*moves;
+
 	if (map->map[map->player_pos_y][map->player_pos_x - 1] != '1')
 	{
 		if (map->map[map->player_pos_y][map->player_pos_x] == 'E')
@@ -76,14 +79,15 @@ void	ft_move_left(t_map *map)
 			map->player_pos_x * map->tile_w, map->player_pos_y * map->tile_h);
 		map->moves++;
 		moves = ft_itoa(map->moves);
-		write(1,moves,ft_strlen(moves));
+		write(1, moves, ft_strlen(moves));
 		write(1, "\n", 1);
 	}
 }
 
 void	ft_move_right(t_map *map)
 {
-	char *moves;
+	char	*moves;
+
 	if (map->map[map->player_pos_y][map->player_pos_x + 1] != '1')
 	{
 		if (map->map[map->player_pos_y][map->player_pos_x] == 'E')
@@ -99,7 +103,7 @@ void	ft_move_right(t_map *map)
 			map->player_pos_x * map->tile_w, map->player_pos_y * map->tile_h);
 		map->moves++;
 		moves = ft_itoa(map->moves);
-		write(1,moves,ft_strlen(moves));
+		write(1, moves, ft_strlen(moves));
 		write(1, "\n", 1);
 	}
 }
