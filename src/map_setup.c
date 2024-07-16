@@ -6,11 +6,38 @@
 /*   By: asideris <asideris@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/30 18:03:42 by asideris          #+#    #+#             */
-/*   Updated: 2024/07/11 16:15:15 by asideris         ###   ########.fr       */
+/*   Updated: 2024/07/11 18:36:37 by asideris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
+
+int	ft_check_map_exists(t_map *map)
+{
+	if (!open(map->map_path, O_RDONLY) || open(map->map_path, O_RDONLY) == -1)
+	{
+		if (map)
+		{
+			if (map->char_img)
+				mlx_destroy_image(map->mlx_ptr, map->char_img);
+			if (map->exit_img)
+				mlx_destroy_image(map->mlx_ptr, map->exit_img);
+			if (map->flowers)
+				mlx_destroy_image(map->mlx_ptr, map->flowers);
+			// if (map->window_ptr)
+			// 	mlx_clear_window(map->mlx_ptr, map->window_ptr);
+			if (map->mlx_ptr)
+			{
+				printf("avant");
+				// mlx_destroy_window(map->mlx_ptr, map->window_ptr);
+				free(map->mlx_ptr);
+				printf("apres");
+			}
+			exit(1);
+		}
+	}
+	return (1);
+}
 
 void	ft_get_measures(t_map *map)
 {
@@ -21,7 +48,8 @@ void	ft_get_measures(t_map *map)
 	len = 0;
 	map->collumns = 0;
 	map->rows = 1;
-	fd = open("map.ber", O_RDONLY);
+	ft_check_map_exists(map);
+	fd = open(map->map_path, O_RDONLY);
 	str = get_next_line(fd);
 	if (!str)
 		free(str);

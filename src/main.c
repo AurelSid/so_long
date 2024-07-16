@@ -6,7 +6,7 @@
 /*   By: asideris <asideris@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 17:19:37 by asideris          #+#    #+#             */
-/*   Updated: 2024/07/11 16:14:18 by asideris         ###   ########.fr       */
+/*   Updated: 2024/07/11 17:04:04 by asideris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,15 @@ void	ft_setup_struct(t_map *map)
 	map->mlx_ptr = mlx_init();
 	if (!map->mlx_ptr)
 		return ;
-	map->bg_img = mlx_xpm_file_to_image(map->mlx_ptr, "bg.xpm", &map->tile_w,
-			&map->tile_h);
-	map->char_img = mlx_xpm_file_to_image(map->mlx_ptr, "static_char.xpm",
+	map->bg_img = mlx_xpm_file_to_image(map->mlx_ptr, "textures/bg.xpm",
 			&map->tile_w, &map->tile_h);
-	map->wall = mlx_xpm_file_to_image(map->mlx_ptr, "wall.xpm", &map->tile_w,
-			&map->tile_h);
-	map->flowers = mlx_xpm_file_to_image(map->mlx_ptr, "blue_flowers.xpm",
+	map->char_img = mlx_xpm_file_to_image(map->mlx_ptr,
+			"textures/static_char.xpm", &map->tile_w, &map->tile_h);
+	map->wall = mlx_xpm_file_to_image(map->mlx_ptr, "textures/wall.xpm",
 			&map->tile_w, &map->tile_h);
-	map->exit_img = mlx_xpm_file_to_image(map->mlx_ptr, "exit.xpm",
+	map->flowers = mlx_xpm_file_to_image(map->mlx_ptr,
+			"textures/blue_flowers.xpm", &map->tile_w, &map->tile_h);
+	map->exit_img = mlx_xpm_file_to_image(map->mlx_ptr, "textures/exit.xpm",
 			&map->tile_w, &map->tile_h);
 	map->score = 0;
 	map->exit_c = 1;
@@ -91,6 +91,7 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		return (0);
 	map = (t_map *)malloc(sizeof(t_map));
+	map->map_path = argv[1];
 	ft_setup_struct(map);
 	ft_read_map(map, argv[1]);
 	ft_set_player_pos(map);
