@@ -6,7 +6,7 @@
 /*   By: asideris <asideris@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 16:14:47 by asideris          #+#    #+#             */
-/*   Updated: 2024/07/11 18:13:44 by asideris         ###   ########.fr       */
+/*   Updated: 2024/07/16 14:19:30 by asideris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct Node
 	int		player_pos_y;
 	int		player_pos_x;
 	int		score;
+	int		moves;
 
 }			t_map;
 int			ft_check_walls(t_map *map);

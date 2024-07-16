@@ -6,7 +6,7 @@
 /*   By: asideris <asideris@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 17:19:37 by asideris          #+#    #+#             */
-/*   Updated: 2024/07/11 17:04:04 by asideris         ###   ########.fr       */
+/*   Updated: 2024/07/16 14:33:50 by asideris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	ft_setup_struct(t_map *map)
 	map->exit_img = mlx_xpm_file_to_image(map->mlx_ptr, "textures/exit.xpm",
 			&map->tile_w, &map->tile_h);
 	map->score = 0;
+	map->moves = 0;
 	map->exit_c = 1;
 }
 

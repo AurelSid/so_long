@@ -6,7 +6,7 @@
 /*   By: asideris <asideris@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 17:21:52 by asideris          #+#    #+#             */
-/*   Updated: 2024/07/11 16:12:56 by asideris         ###   ########.fr       */
+/*   Updated: 2024/07/16 14:40:17 by asideris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ int	ft_backtrack(t_map *map, int y, int x)
 	}
 	if (map->tokens == 0 && map->exit_c == 0)
 	{
-		printf("backtracking map ok");
 		return (1);
 	}
 	map->map[y][x] = 'V';

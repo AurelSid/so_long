@@ -10,7 +10,7 @@ GNL_DIR             = get_next_line/
 
 # Compiler and CFlags
 CC                  = gcc
-CFLAGS              = -Wall -Werror -Wextra  -g
+CFLAGS              = -Wall -Werror -Wextra  -MMD
 RM                  = rm -f
 
 # Additional flags
@@ -25,6 +25,7 @@ GNL_SRCS            = get_next_line.c get_next_line_utils.c
 SRC                 = $(addprefix $(SRC_DIR), $(SRCS))
 GNL_SRC             = $(addprefix $(GNL_DIR), $(GNL_SRCS))
 OBJ                 = $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o) $(GNL_SRCS:.c=.o))
+DEPS                = $(OBJ:.o=.d)
 
 all:                $(NAME)
 
@@ -41,32 +42,27 @@ obj:
 		echo "Directory obj/ with files .o is being created..."; \
 	fi
 
-$(NAME):       $(LIBFT) obj $(OBJ)
-	@if [ -f $(NAME) ]; then \
-		echo "\033[1;31mso_long still exists.\033[0m"; \
-	else \
-		echo "Compiling so_long..."; \
-		$(CC) $(CFLAGS) $(INCLUDES) $(OBJ) $(LIBFT)  -o $(NAME) $(LIBRARIES); \
-		echo "\033[1;32mDone.\033[0m"; \
-	fi
+$(NAME): $(LIBFT) obj $(OBJ)
+	@echo "Compiling so_long..."
+	$(CC) $(CFLAGS) $(INCLUDES) $(OBJ) $(LIBFT) -o $(NAME) $(LIBRARIES)
+	@echo "\033[1;32mDone.\033[0m"
 
 # Compile object files from source files
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(@D)
 	@$(CC) $(CFLAGS) -I$(INC) $(INCLUDES) -c $< -o $@
-	@echo "\033[1;32mFile created.\033[0m";
+	@echo "\033[1;32mFile $@ created.\033[0m";
 
 $(OBJ_DIR)/%.o: $(GNL_DIR)/%.c
 	@mkdir -p $(@D)
 	@$(CC) $(CFLAGS) -I$(INC) -I$(GNL_DIR) $(INCLUDES) -c $< -o $@
-	@echo "\033[1;32mFile created.\033[0m";
+	@echo "\033[1;32mFile $@ created.\033[0m";
 
 clean:
 	@echo "Removing obj/..."
 	@$(RM) -r $(OBJ_DIR)
-	@echo "Removing so_long/obj..."
+	@echo "Cleaning libft..."
 	@make clean -C ./libft > /dev/null
-
 	@echo "\033[1;32mAll Done for clean.\033[0m"
 
 fclean: clean
@@ -74,9 +70,10 @@ fclean: clean
 	@$(RM) $(NAME)
 	@echo "Removing libft.a..."
 	@$(RM) $(LIBFT)
-
 	@echo "\033[1;32mDone.\033[0m"
 
 re: fclean all
 
 .PHONY: all obj clean fclean re
+
+-include $(DEPS)
