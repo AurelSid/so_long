@@ -10,7 +10,7 @@ GNL_DIR             = get_next_line/
 
 # Compiler and CFlags
 CC                  = gcc
-CFLAGS              = -Wall -Werror -Wextra  -MMD
+CFLAGS              = -Wall -Werror -Wextra  -MMD -g 
 RM                  = rm -f
 
 # Additional flags

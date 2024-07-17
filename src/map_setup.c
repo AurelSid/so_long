@@ -6,7 +6,7 @@
 /*   By: asideris <asideris@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/30 18:03:42 by asideris          #+#    #+#             */
-/*   Updated: 2024/07/16 14:12:29 by asideris         ###   ########.fr       */
+/*   Updated: 2024/07/17 15:24:11 by asideris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,18 @@
 
 int	ft_check_map_exists(t_map *map)
 {
-	if (!open(map->map_path, O_RDONLY) || open(map->map_path, O_RDONLY) == -1)
+	int		fd;
+	char	buffer[1];
+
+	fd = open(map->map_path, O_RDONLY);
+	if (fd == -1)
+		ft_exit_free(map, "No map");
+	if (read(fd, buffer, 1) <= 0)
 	{
-		write(2, "No map", 6);
-		exit(-1);
+		close(fd);
+		ft_exit_free(map, "Map Empty");
 	}
+	close(fd);
 	return (1);
 }
 
@@ -36,7 +43,7 @@ void	ft_get_measures(t_map *map)
 	str = get_next_line(fd);
 	if (!str)
 		free(str);
-	len = ft_strlen(str) - 1;
+	len = ft_strlen(str);
 	while (1)
 	{
 		str = get_next_line(fd);
@@ -45,7 +52,7 @@ void	ft_get_measures(t_map *map)
 			free(str);
 			break ;
 		}
-		map->collumns = ft_strlen(str) - 1;
+		map->collumns = ft_strlen(str);
 		map->rows++;
 	}
 	close(fd);
@@ -60,8 +67,8 @@ void	ft_allocate_map(t_map *map)
 	i = 0;
 	while (i < map->rows)
 	{
-		map->map[i] = (char *)malloc(map->collumns * sizeof(char));
-		if (map->map[i] == NULL)
+		map->map[i] = (char *)malloc(map->collumns * sizeof(char) + 1);
+		if (!map->map[i])
 		{
 			j = 0;
 			while (j < i)
@@ -91,7 +98,7 @@ void	ft_read_map(t_map *map, char *file_name)
 	{
 		j = 0;
 		line = get_next_line(fd);
-		while (line[j] != '\n' && line[j] != '\0')
+		while (line[j])
 		{
 			map->map[i][j] = line[j];
 			j++;
@@ -111,7 +118,7 @@ void	ft_free_map(t_map *map)
 	while (j < map->rows)
 	{
 		free(map->map[j]);
+		map->map[j] = NULL;
 		j++;
 	}
-	free(map->map);
 }

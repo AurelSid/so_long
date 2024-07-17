@@ -6,7 +6,7 @@
 /*   By: asideris <asideris@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 13:10:02 by asideris          #+#    #+#             */
-/*   Updated: 2024/07/16 14:07:59 by asideris         ###   ########.fr       */
+/*   Updated: 2024/07/17 15:25:40 by asideris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,9 @@ int	ft_check_walls(t_map *map)
 				- 1)
 			{
 				if (map->map[i][j] != '1')
+				{
 					ft_exit_free(map, "Invalid walls setup");
+				}
 			}
 			j++;
 		}
@@ -43,7 +45,7 @@ void	ft_printf_map(t_map *map)
 
 	i = 0;
 	j = 0;
-	while (map->map[i])
+	while (i < map->rows)
 	{
 		j = 0;
 		while (map->map[i][j])
@@ -63,9 +65,9 @@ int	ft_check_rows(t_map *map)
 
 	i = 0;
 	len = ft_strlen(map->map[0]);
-	while (i < map->rows)
+	while (i < map->rows - 1)
 	{
-		if (ft_strlen(map->map[i]) != len)
+		if (ft_len(map->map[i]) != len)
 		{
 			ft_exit_free(map, "Uneven map");
 		}

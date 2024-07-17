@@ -6,7 +6,7 @@
 /*   By: asideris <asideris@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 16:14:47 by asideris          #+#    #+#             */
-/*   Updated: 2024/07/16 14:19:30 by asideris         ###   ########.fr       */
+/*   Updated: 2024/07/17 14:57:47 by asideris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define SO_LONG_H
 
 # include "../get_next_line/get_next_line.h"
+# include "../Libft/libft.h"
 # include <fcntl.h>
 # include <mlx.h>
 # include <stdio.h>
@@ -63,6 +64,8 @@ int			ft_backtrack(t_map *map, int x, int y);
 int			ft_token_count(t_map *map);
 void		ft_exit_free(t_map *map, char *error);
 void		ft_printf_map(t_map *map);
+
+void		ft_check_extention(char *path);
 
 void		ft_free_map(t_map *map);
 
