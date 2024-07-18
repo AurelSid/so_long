@@ -6,18 +6,17 @@
 /*   By: asideris <asideris@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 16:14:47 by asideris          #+#    #+#             */
-/*   Updated: 2024/07/17 14:57:47 by asideris         ###   ########.fr       */
+/*   Updated: 2024/07/18 18:11:36 by asideris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include "../get_next_line/get_next_line.h"
 # include "../Libft/libft.h"
+# include "../get_next_line/get_next_line.h"
 # include <fcntl.h>
 # include <mlx.h>
-# include <stdio.h>
 
 typedef struct Node
 {
@@ -64,6 +63,7 @@ int			ft_backtrack(t_map *map, int x, int y);
 int			ft_token_count(t_map *map);
 void		ft_exit_free(t_map *map, char *error);
 void		ft_printf_map(t_map *map);
+void		destroy_images(t_map *map);
 
 void		ft_check_extention(char *path);
 

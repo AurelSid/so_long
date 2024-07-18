@@ -6,7 +6,7 @@
 /*   By: asideris <asideris@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 17:19:37 by asideris          #+#    #+#             */
-/*   Updated: 2024/07/17 15:24:29 by asideris         ###   ########.fr       */
+/*   Updated: 2024/07/18 18:18:34 by asideris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,12 @@ void	ft_set_player_pos(t_map *map)
 
 int	handle_close(t_map *map)
 {
-	ft_exit_free(map, "");
-	return (0);
+	mlx_destroy_window(map->mlx_ptr, map->window_ptr);
+	destroy_images(map);
+	ft_free_map(map);
+	free(map->map);
+	map->map = NULL;
+	exit(0);
 }
 
 int	ft_check_err(t_map *map)
@@ -93,6 +97,8 @@ int	main(int argc, char **argv)
 	map->map_path = argv[1];
 	ft_setup_struct(map);
 	ft_read_map(map, argv[1]);
+	if (map->collumns > 38 || map->rows > 21)
+		ft_exit_free(map, "Please reduce the map");
 	ft_set_player_pos(map);
 	ft_check_err(map);
 	ft_read_map(map, argv[1]);
