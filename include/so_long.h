@@ -6,7 +6,7 @@
 /*   By: asideris <asideris@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 16:14:47 by asideris          #+#    #+#             */
-/*   Updated: 2024/07/18 18:11:36 by asideris         ###   ########.fr       */
+/*   Updated: 2024/07/20 15:00:02 by asideris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct Node
 	int		player_pos_x;
 	int		score;
 	int		moves;
+	int		player_count;
 
 }			t_map;
 int			ft_check_walls(t_map *map);
@@ -64,6 +65,7 @@ int			ft_token_count(t_map *map);
 void		ft_exit_free(t_map *map, char *error);
 void		ft_printf_map(t_map *map);
 void		destroy_images(t_map *map);
+int			ft_player_count(t_map *map);
 
 void		ft_check_extention(char *path);
 

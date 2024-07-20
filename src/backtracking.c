@@ -6,7 +6,7 @@
 /*   By: asideris <asideris@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 17:21:52 by asideris          #+#    #+#             */
-/*   Updated: 2024/07/18 15:49:03 by asideris         ###   ########.fr       */
+/*   Updated: 2024/07/20 15:02:41 by asideris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,28 @@ int	ft_backtrack(t_map *map, int y, int x)
 		return (1);
 	map->map[y][x] = original;
 	return (0);
+}
+
+int	ft_player_count(t_map *map)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	map->player_count = 0;
+	while (i < map->rows)
+	{
+		j = 0;
+		while (j < map->collumns)
+		{
+			if (map->map[i][j] == 'C')
+				map->player_count++;
+			j++;
+		}
+		i++;
+	}
+	if (map->player_count != 1)
+		ft_exit_free(map, "Bad player count");
+	return (map->tokens);
 }

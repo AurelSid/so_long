@@ -6,7 +6,7 @@
 /*   By: asideris <asideris@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 17:19:37 by asideris          #+#    #+#             */
-/*   Updated: 2024/07/18 18:18:34 by asideris         ###   ########.fr       */
+/*   Updated: 2024/07/20 15:00:27 by asideris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ int	handle_close(t_map *map)
 int	ft_check_err(t_map *map)
 {
 	if (!ft_token_count(map))
+		return (0);
+	if (!ft_player_count(map))
 		return (0);
 	if (map->player_pos_y == 0)
 		return (0);
