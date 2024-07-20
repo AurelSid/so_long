@@ -6,7 +6,7 @@
 /*   By: asideris <asideris@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 17:21:52 by asideris          #+#    #+#             */
-/*   Updated: 2024/07/20 15:02:41 by asideris         ###   ########.fr       */
+/*   Updated: 2024/07/20 15:13:26 by asideris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int	ft_player_count(t_map *map)
 		j = 0;
 		while (j < map->collumns)
 		{
-			if (map->map[i][j] == 'C')
+			if (map->map[i][j] == 'P')
 				map->player_count++;
 			j++;
 		}
