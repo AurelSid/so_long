@@ -6,7 +6,7 @@
 /*   By: asideris <asideris@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 17:21:52 by asideris          #+#    #+#             */
-/*   Updated: 2024/07/20 15:13:26 by asideris         ###   ########.fr       */
+/*   Updated: 2024/07/22 12:04:41 by asideris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,5 +86,18 @@ int	ft_player_count(t_map *map)
 	}
 	if (map->player_count != 1)
 		ft_exit_free(map, "Bad player count");
-	return (map->tokens);
+	return (map->player_count);
+}
+
+void	ft_free_split(char **str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		free(str[i]);
+		i++;
+	}
+	free(str);
 }

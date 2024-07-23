@@ -6,7 +6,7 @@
 /*   By: asideris <asideris@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 16:14:47 by asideris          #+#    #+#             */
-/*   Updated: 2024/07/20 15:00:02 by asideris         ###   ########.fr       */
+/*   Updated: 2024/07/22 12:05:19 by asideris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,6 @@ int			ft_player_count(t_map *map);
 void		ft_check_extention(char *path);
 
 void		ft_free_map(t_map *map);
+void		ft_free_split(char **str);
 
 #endif

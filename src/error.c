@@ -6,7 +6,7 @@
 /*   By: asideris <asideris@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 16:31:05 by asideris          #+#    #+#             */
-/*   Updated: 2024/07/18 18:19:11 by asideris         ###   ########.fr       */
+/*   Updated: 2024/07/22 12:13:39 by asideris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	free_map_and_error(t_map *map, char *error)
 	}
 	if (error)
 	{
-		write(2, "Error:", 5);
+		write(2, "Error: ", 7);
 		write(2, error, ft_strlen(error));
 	}
 }
@@ -71,10 +71,11 @@ void	ft_check_extention(char *path)
 	char	**str;
 
 	str = ft_split(path, '.');
-	if (ft_strncmp(str[1], "ber", 3))
+	if (!str[1] || ft_strncmp(str[1], "ber", 3))
 	{
-		free(str);
+		ft_free_split(str);
 		write(2, "Bad file extention , program will now quit...", 45);
-		exit(-1);
+		exit(0);
 	}
+	ft_free_split(str);
 }

@@ -10,7 +10,7 @@ GNL_DIR             = get_next_line/
 
 # Compiler and CFlags
 CC                  = gcc
-CFLAGS              = -Wall -Werror -Wextra  -MMD 
+CFLAGS              = -Wall -Werror -Wextra
 RM                  = rm -f
 
 # Additional flags
@@ -25,7 +25,6 @@ GNL_SRCS            = get_next_line.c get_next_line_utils.c
 SRC                 = $(addprefix $(SRC_DIR), $(SRCS))
 GNL_SRC             = $(addprefix $(GNL_DIR), $(GNL_SRCS))
 OBJ                 = $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o) $(GNL_SRCS:.c=.o))
-DEPS                = $(OBJ:.o=.d)
 
 all:                $(NAME)
 
@@ -42,7 +41,7 @@ obj:
 		echo "Directory obj/ with files .o is being created..."; \
 	fi
 
-$(NAME): $(LIBFT) obj $(OBJ)
+$(NAME): $(OBJ) $(LIBFT)
 	@echo "Compiling so_long..."
 	$(CC) $(CFLAGS) $(INCLUDES) $(OBJ) $(LIBFT) -o $(NAME) $(LIBRARIES)
 	@echo "\033[1;32mDone.\033[0m"
@@ -75,5 +74,3 @@ fclean: clean
 re: fclean all
 
 .PHONY: all obj clean fclean re
-
--include $(DEPS)
