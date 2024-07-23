@@ -6,7 +6,7 @@
 /*   By: asideris <asideris@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 17:19:37 by asideris          #+#    #+#             */
-/*   Updated: 2024/07/22 12:29:38 by asideris         ###   ########.fr       */
+/*   Updated: 2024/07/23 21:34:50 by asideris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,15 +71,17 @@ int	handle_close(t_map *map)
 
 int	ft_check_err(t_map *map)
 {
+	if (!ft_check_rows(map))
+		return (0);
+	if (!ft_check_walls(map))
+		return (0);
 	if (!ft_token_count(map))
+		return (0);
+	if (!ft_exit_count(map))
 		return (0);
 	if (!ft_player_count(map))
 		return (0);
 	if (map->player_pos_y == 0)
-		return (0);
-	if (!ft_check_walls(map))
-		return (0);
-	if (!ft_check_rows(map))
 		return (0);
 	if (!ft_check_valid_tile(map))
 		return (0);
@@ -92,7 +94,7 @@ int	main(int argc, char **argv)
 {
 	t_map	*map;
 
-	if (argc != 2)
+	if (argc != 2 || argv[1][0] == 0)
 		return (0);
 	ft_check_extention(argv[1]);
 	map = (t_map *)malloc(sizeof(t_map));

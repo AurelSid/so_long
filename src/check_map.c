@@ -6,7 +6,7 @@
 /*   By: asideris <asideris@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 13:10:02 by asideris          #+#    #+#             */
-/*   Updated: 2024/07/17 15:25:40 by asideris         ###   ########.fr       */
+/*   Updated: 2024/07/23 18:08:31 by asideris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,14 @@ int	ft_check_walls(t_map *map)
 	while (i < map->rows)
 	{
 		j = 0;
-		while (j < map->collumns)
+		while (map->map[i][j])
 		{
 			if (i == 0 || i == map->rows - 1 || j == 0 || j == map->collumns
 				- 1)
 			{
 				if (map->map[i][j] != '1')
 				{
-					ft_exit_free(map, "Invalid walls setup");
+					ft_exit_free(map, "Invalid wall setup");
 				}
 			}
 			j++;
@@ -38,14 +38,14 @@ int	ft_check_walls(t_map *map)
 	return (1);
 }
 
-void	ft_printf_map(t_map *map)
+void	ft__map(t_map *map)
 {
 	int	i;
 	int	j;
 
 	i = 0;
 	j = 0;
-	while (i < map->rows)
+	while (map->map[i])
 	{
 		j = 0;
 		while (map->map[i][j])
@@ -53,9 +53,9 @@ void	ft_printf_map(t_map *map)
 			write(1, &map->map[i][j], 1);
 			j++;
 		}
-		write(1, "\n", 1);
 		i++;
 	}
+	write(1, "\n", 1);
 }
 
 int	ft_check_rows(t_map *map)
@@ -65,7 +65,7 @@ int	ft_check_rows(t_map *map)
 
 	i = 0;
 	len = ft_strlen(map->map[0]);
-	while (i < map->rows - 1)
+	while (i < map->rows)
 	{
 		if (ft_len(map->map[i]) != len)
 		{

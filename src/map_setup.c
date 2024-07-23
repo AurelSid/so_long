@@ -6,7 +6,7 @@
 /*   By: asideris <asideris@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/30 18:03:42 by asideris          #+#    #+#             */
-/*   Updated: 2024/07/17 15:24:11 by asideris         ###   ########.fr       */
+/*   Updated: 2024/07/23 18:14:13 by asideris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	ft_get_measures(t_map *map)
 	if (!str)
 		free(str);
 	len = ft_strlen(str);
+	map->collumns = ft_strlen(str) - 1;
 	while (1)
 	{
 		str = get_next_line(fd);
@@ -52,7 +53,6 @@ void	ft_get_measures(t_map *map)
 			free(str);
 			break ;
 		}
-		map->collumns = ft_strlen(str);
 		map->rows++;
 	}
 	close(fd);
@@ -65,6 +65,7 @@ void	ft_allocate_map(t_map *map)
 
 	map->map = (char **)malloc(map->rows * sizeof(char *));
 	i = 0;
+	j = 0;
 	while (i < map->rows)
 	{
 		map->map[i] = (char *)malloc(map->collumns * sizeof(char) + 1);
@@ -98,6 +99,7 @@ void	ft_read_map(t_map *map, char *file_name)
 	{
 		j = 0;
 		line = get_next_line(fd);
+		line = ft_strtrim(line, "\n");
 		while (line[j])
 		{
 			map->map[i][j] = line[j];

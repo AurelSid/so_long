@@ -6,7 +6,7 @@
 /*   By: asideris <asideris@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 16:31:05 by asideris          #+#    #+#             */
-/*   Updated: 2024/07/22 12:13:39 by asideris         ###   ########.fr       */
+/*   Updated: 2024/07/23 18:30:07 by asideris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	ft_check_extention(char *path)
 	char	**str;
 
 	str = ft_split(path, '.');
-	if (!str[1] || ft_strncmp(str[1], "ber", 3))
+	if (!str[1] || ft_strncmp("ber", str[1], ft_strlen(str[1]) + 3))
 	{
 		ft_free_split(str);
 		write(2, "Bad file extention , program will now quit...", 45);

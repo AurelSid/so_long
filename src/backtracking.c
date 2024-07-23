@@ -6,7 +6,7 @@
 /*   By: asideris <asideris@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 17:21:52 by asideris          #+#    #+#             */
-/*   Updated: 2024/07/22 12:04:41 by asideris         ###   ########.fr       */
+/*   Updated: 2024/07/23 21:38:02 by asideris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,22 +46,18 @@ int	ft_backtrack(t_map *map, int y, int x)
 		return (0);
 	original = map->map[y][x];
 	if (map->map[y][x] == 'C')
-	{
 		map->tokens--;
-	}
 	else if (map->map[y][x] == 'E')
-	{
 		map->exit_c--;
-	}
 	map->map[y][x] = 'V';
 	if (map->tokens == 0 && map->exit_c == 0)
-	{
 		return (1);
-	}
 	if (ft_backtrack(map, y, x + 1) || ft_backtrack(map, y, x - 1)
 		|| ft_backtrack(map, y + 1, x) || ft_backtrack(map, y - 1, x))
+	{
 		return (1);
-	map->map[y][x] = original;
+		map->map[y][x] = original;
+	}
 	return (0);
 }
 
@@ -87,6 +83,30 @@ int	ft_player_count(t_map *map)
 	if (map->player_count != 1)
 		ft_exit_free(map, "Bad player count");
 	return (map->player_count);
+}
+
+int	ft_exit_count(t_map *map)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	map->exit_c = 0;
+	while (i < map->rows)
+	{
+		j = 0;
+		while (j < map->collumns)
+		{
+			if (map->map[i][j] == 'E')
+				map->exit_c++;
+			j++;
+		}
+		i++;
+	}
+	if (map->exit_c != 1)
+		ft_exit_free(map, "Bad exit count");
+	return (map->exit_c);
 }
 
 void	ft_free_split(char **str)

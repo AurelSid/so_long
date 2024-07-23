@@ -6,7 +6,7 @@
 /*   By: asideris <asideris@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 16:14:47 by asideris          #+#    #+#             */
-/*   Updated: 2024/07/22 12:05:19 by asideris         ###   ########.fr       */
+/*   Updated: 2024/07/23 18:05:09 by asideris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "../get_next_line/get_next_line.h"
 # include <fcntl.h>
 # include <mlx.h>
+# include <stdio.h>
 
 typedef struct Node
 {
@@ -63,7 +64,7 @@ int			ft_check_valid_tile(t_map *map);
 int			ft_backtrack(t_map *map, int x, int y);
 int			ft_token_count(t_map *map);
 void		ft_exit_free(t_map *map, char *error);
-void		ft_printf_map(t_map *map);
+void		ft__map(t_map *map);
 void		destroy_images(t_map *map);
 int			ft_player_count(t_map *map);
 
@@ -72,4 +73,6 @@ void		ft_check_extention(char *path);
 void		ft_free_map(t_map *map);
 void		ft_free_split(char **str);
 
+int			ft_check_map_exists(t_map *map);
+int			ft_exit_count(t_map *map);
 #endif
